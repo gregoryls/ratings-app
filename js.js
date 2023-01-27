@@ -1,8 +1,10 @@
 //TODO callback function reading/maybe asynch
 //TODO append unique list items
+//TODO remove any with a rating of 0
 
 
 let books = '';
+let readBooks = [];
 let list = document.querySelector('#list ol');
 
 Papa.parse('data/goodreads_library_export.csv', 
@@ -19,13 +21,20 @@ Papa.parse('data/goodreads_library_export.csv',
 console.log(books);
 let btn = document.querySelector('#populate');
 btn.addEventListener('click',()=>{
-    //length -1, final row was an undefined error
+    //data source has a rating of 0 for unread books
     for (let i=0;i<books.length-1;i++){
+        if (books[i]['My Rating'] !== '0'){
+            readBooks.push(books[i])
+        }
+    }    
+
+    //length -1, final row was an undefined error
+    for (let i=0;i<readBooks.length;i++){
         //create new li element inside for loop, otherwise it will be overwritten each loop
         //TODO read mdn doc for appendchild
         let listItem = document.createElement('li');
-        listItem.textContent = books[i].Title + ', ' + books[i].Author + 
-        ', ' + books[i]['My Rating'];
+        listItem.textContent = readBooks[i].Title + ', ' + readBooks[i].Author + 
+        ', ' + readBooks[i]['My Rating'];
         
         list.appendChild(listItem);
     

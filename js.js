@@ -22,13 +22,16 @@ console.log(books);
 let btn = document.querySelector('#populate');
 btn.addEventListener('click',()=>{
     //data source has a rating of 0 for unread books
+    //length -1, final row in csv returns undefined
     for (let i=0;i<books.length-1;i++){
         if (books[i]['My Rating'] !== '0'){
             readBooks.push(books[i])
         }
-    }    
-
-    //length -1, final row was an undefined error
+    }  
+    
+    //b-a to sort books in descending order by rating
+    readBooks.sort((a,b) => b['My Rating']-a['My Rating']);
+    
     for (let i=0;i<readBooks.length;i++){
         //create new li element inside for loop, otherwise it will be overwritten each loop
         //TODO read mdn doc for appendchild

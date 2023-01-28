@@ -19,12 +19,10 @@ const displayList = (()=>{
         }   
 
     }
-
     const sortReadBooks = (key)=>{
         //b-a to sort books in descending order by rating
         readBooks.sort((a,b) => b[key]-a[key]);
     }
-
     const renderList = () => {
         for (let i=0;i<readBooks.length;i++){
             //create new li element inside for loop, otherwise it will be overwritten each loop
@@ -33,20 +31,11 @@ const displayList = (()=>{
             listItem.textContent = readBooks[i].Title + ', ' + readBooks[i].Author + 
             ', ' + readBooks[i]['My Rating'];
             
-            list.appendChild(listItem);
-        
-            
+            list.appendChild(listItem);   
         }
     }
-
-    return{
-        filterReadBooks,
-        sortReadBooks,
-        renderList,
-    }
-})();
-
-Papa.parse('data/goodreads_library_export.csv', 
+    //consider moving incoming data to own iife when changing to file upload. 
+    Papa.parse('data/goodreads_library_export.csv', 
     {   
         header:true,
         download:true,
@@ -57,7 +46,16 @@ Papa.parse('data/goodreads_library_export.csv',
         }
     }
 )
-console.log(books);
+
+    return{
+        filterReadBooks,
+        sortReadBooks,
+        renderList,
+    }
+})();
+
+
+console.log(books); //delete later
 let btn = document.querySelector('#populate');
 btn.addEventListener('click',()=>{
     

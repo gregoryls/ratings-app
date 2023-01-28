@@ -67,11 +67,3 @@ btn.addEventListener('click',()=>{
     
 })
 
-for (let i=0;i<books.length;i++){
-    console.log(i);
-    listItem.textContent = books[i].Title + ', ' + books[i].Author + 
-    ', ' + books[i]['My Rating'];
-    list.appendChild(listItem);
-
-    console.log(listItem);
-}

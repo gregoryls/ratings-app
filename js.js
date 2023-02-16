@@ -85,10 +85,54 @@ for (let i=1; i<44; i++){
         }
     }
 )
-
 }
 
-// let btn = document.querySelector('#populate');
+console.log(stats);
+let championArray = {};
+let championPickBanTotal = {};
+
+let btn = document.querySelector('#populate');
+
+btn.addEventListener('click', ()=>{
+
+stats.forEach(season => {
+    season.forEach(champ =>{
+                // console.log(champ)
+        
+                if (champ.Champion in championArray){
+                    // console.log(championArray[champ.Champion]);
+                    championArray[champ.Champion].push(parseInt(champ.G))
+                    // console.log(championArray)
+                } else {
+                    championArray[champ.Champion] = [parseInt(champ.G)]
+                }
+            });
+});
+console.log(championArray);
+// console.log(championArray.Shen.reduce((accumulator, currentValue)=>accumulator + currentValue, 0));
+Object.keys(championArray).forEach(key =>{
+    let pickBanTotal = championArray[key].reduce((accumulator, currentValue)=>accumulator + currentValue, 0);
+    championPickBanTotal[key] = pickBanTotal;
+});
+
+Object.keys(championPickBanTotal).forEach(key=>{
+    //delete entries that are NaN - usually from an error in the data source
+
+    if (Number.isNaN(championPickBanTotal[key])) delete championPickBanTotal[key];
+})
+
+console.log(championPickBanTotal);
+// var totals = Object.values(championPickBanTotal);
+// console.log(totals)
+// totals.forEach(num=>{
+//     if (Number.isNaN(num)) console.log('alret')
+// })
+console.log(Math.max(...Object.values(championPickBanTotal)))
+// console.log(Object.values(championPickBanTotal))
+});
+
+
+
 // let spring2013 = [];
 
 // let championArray = {

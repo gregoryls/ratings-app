@@ -68,8 +68,7 @@
 
 //end book code above
 
-//TODO make numbered spreadsheets
-//add extra foreach level to account for stats array 
+//TODO split lcs stats into it's own repo
 
 for (let i=1; i<44; i++){
     //accounts for up through 2023-02-14, spring season
@@ -128,7 +127,7 @@ console.log(championPickBanTotal);
 //     if (Number.isNaN(num)) console.log('alret')
 // })
 console.log(Math.max(...Object.values(championPickBanTotal)))
-// console.log(Object.values(championPickBanTotal))
+console.log(Object.values(championPickBanTotal))
 });
 
 
